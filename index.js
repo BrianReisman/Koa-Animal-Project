@@ -1,23 +1,7 @@
 import Koa from "koa";
 import Router from "@koa/router";
 import cors from "@koa/cors";
-
-// Commented out so it doesn't get auto-removed by text editors. You may uncomment if needed.
 import fetch from "isomorphic-fetch";
-
-//*my code
-// fetch("https://catfact.ninja/fact")
-// .then((res) => res.json())
-// .then((res) => {
-// console.log(res.fact);
-// quote.textContent = res.fact
-// })
-// .catch((err) => console.log(err));
-//*my code
-
-// Used for reading incoming POST bodies. Commented out for same reason as above.
-// See https://github.com/dlau/koa-body#usage-with-koa-router
-// import koaBody from "koa-body";
 
 const app = new Koa();
 const router = new Router();
@@ -30,77 +14,27 @@ router.get("/", (ctx) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//* acpet any get request to the given path
-
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Added by:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Brian Reisman>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Create an endpoint on http://localhost:3011 at /dogPix.
+//Since we are reaching out to dog.ceo/api we are dealing with asynchronous behavior. I will deal with this using the async/await pattern.
+//In the get request to this localhost:3011/dogPix endpoint I have embedded a breed= query-string which here I extract off the ctx object and then embed again into the dog.ceo fetch request.
+//For fun I added a default value using the || operator inside my string interpolation so if a submit is made without any input value, it will return a Golden Retriever
 router.get("/dogPix", async (ctx) => {
-  const response =  await fetch(`https://dog.ceo/api/breed/african/images/random`) //!need dynamic value for god.ceo call
-	ctx.body = await response.json()
+  const response = await fetch(
+    `https://dog.ceo/api/breed/${
+      ctx.request.query.breed || "retriever/golden"
+    }/images/random`
+  );
+  ctx.body = await response.json();
 });
-
-
-//?try/catch
-//?callback
-//?async/await
-
 
 router.get("/catFact", async (ctx) => {
-  const response =  await fetch(`https://catfact.ninja/fact`)
-	ctx.body = await response.json()
+  const response = await fetch("https://catfact.ninja/fact");
+  ctx.body = await response.json();
 });
-
-//*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Added by:^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Brian Reisman^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 app.use(async (ctx, next) => {
