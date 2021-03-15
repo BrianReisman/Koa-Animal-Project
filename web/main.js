@@ -1,10 +1,17 @@
 // Grab all DOM elements that will be needed
 const image = document.getElementById("randomDogImg");
 const quote = document.querySelector(".quote");
-const input = document.querySelector(".form-control");
-const form = document.querySelector("form");
+const input = document.querySelector("#breedInput");
+const inputSetDefault = document.querySelector("#inputSetDefault");
+const form = document.querySelector("#breed");
+const formSetDefault = document.querySelector("#setDefaultForm");
 const loadingDog = document.querySelector(".loadingDog");
 const loadingCat = document.querySelector(".loadingCat");
+
+formSetDefault.addEventListener('submit', (e) => {
+  e.preventDefault();
+  localStorage.setItem('defaultBreed', inputSetDefault.value)
+})
 
 //Add an event listener on the form for when it is submitted. ie. button click and when it is clicked...
 form.addEventListener("submit", (e) => {
@@ -16,7 +23,7 @@ form.addEventListener("submit", (e) => {
   
   //...then capture the input element's value for use in our fetch below
   const inputValue = input.value;
-  
+  console.log(inputValue)
   //...make a fetch request to our localhost endpoint with the query breed and its value set to that which is assigned to our inputValue.
   fetch(`http://localhost:3011/dogPix?breed=${inputValue}`)
   //upon response convert the response out of JSON
@@ -47,5 +54,3 @@ form.addEventListener("submit", (e) => {
     });
 });
 
-console.log(isFetchingDog);
-console.log(isFetchingCat);
