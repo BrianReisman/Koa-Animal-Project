@@ -8,6 +8,8 @@ const form = document.querySelector("#breed");
 const formSetDefault = document.querySelector("#setDefaultForm");
 const loadingDog = document.querySelector(".loadingDog");
 const loadingCat = document.querySelector(".loadingCat");
+const imageContainer = document.querySelector(".images");
+
 
 formSetDefault.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -39,7 +41,11 @@ form.addEventListener("submit", (e) => {
     })
     //Then take the res.message (which contains the img URL and set the image element's src attribute to that URL, res.message)
     .then((res) => {
-      console.log(res);
+      res.message.forEach(image => {
+        const img = document.createElement('img')
+        img.setAttribute('src', image)
+        imageContainer.appendChild(img)
+      })
       image.setAttribute("src", res.message);
       loadingDog.textContent = "";
     })
@@ -64,5 +70,4 @@ form.addEventListener("submit", (e) => {
     });
 });
 
-const imageContainer = document.querySelector(".images");
-console.log(imageContainer);
+
