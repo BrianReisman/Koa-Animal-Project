@@ -21,9 +21,9 @@ router.get("/", (ctx) => {
 //For fun I added a default value using the || operator inside my string interpolation so if a submit is made without any input value, it will return a Golden Retriever
 router.get("/dogPix", async (ctx) => {
   const response = await fetch(
-    `https://dog.ceo/api/breed/${ctx.request.query.breed}/images/random`
+    `https://dog.ceo/api/breed/${ctx.request.query.breed}/images/random/${ctx.request.query.num}`
   );
-  ctx.body = await response.json();
+  return (ctx.body = await response.json());
 });
 
 router.get("/catFact", async (ctx) => {
