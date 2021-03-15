@@ -13,7 +13,6 @@ router.get("/", (ctx) => {
   ctx.body = "hello!";
 });
 
-
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Added by:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Brian Reisman>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Create an endpoint on http://localhost:3011 at /dogPix.
@@ -22,9 +21,7 @@ router.get("/", (ctx) => {
 //For fun I added a default value using the || operator inside my string interpolation so if a submit is made without any input value, it will return a Golden Retriever
 router.get("/dogPix", async (ctx) => {
   const response = await fetch(
-    `https://dog.ceo/api/breed/${
-      ctx.request.query.breed || "retriever/golden"
-    }/images/random`
+    `https://dog.ceo/api/breed/${ctx.request.query.breed}/images/random`
   );
   ctx.body = await response.json();
 });
@@ -35,7 +32,6 @@ router.get("/catFact", async (ctx) => {
 });
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Added by:^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Brian Reisman^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 app.use(async (ctx, next) => {
   await next();
