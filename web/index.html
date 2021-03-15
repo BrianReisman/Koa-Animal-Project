@@ -22,7 +22,7 @@
             name="default-breed"
             class="form-control"
             id="inputSetDefault"
-            placeholder="set your own default breed"
+            placeholder="Pick a default breed"
           />
         </div>
         <button type="submit" class="btn btn-primary col-4">
@@ -32,16 +32,26 @@
 
       <form id="breed" class="row g-2 mt-4">
         <div class="col-8">
-          <input type="text" name="breed" class="form-control" id="breedInput" />
-          <input type="number" name="breed" class="form-control" id="breedInputNumber" />
+          <input
+            type="text"
+            name="breed"
+            class="form-control"
+            id="breedInput"
+            placeholder="What sort of breed are you looking for?"
+          />
+          <input
+            type="number"
+            name="breed"
+            class="form-control"
+            id="breedInputNumber"
+            placeholder="How many photos would you like to see? (btw 1-50)"
+          />
         </div>
         <button type="submit" class="btn btn-primary col-4">Fetch</button>
       </form>
 
       <div class="display">
-				<div class="images">
-					<!-- <img id="randomDogImg" /> -->
-				</div>
+        <div class="images"></div>
         <p class="loadingDog"></p>
         <p class="loadingCat"></p>
         <p class="quote"></p>

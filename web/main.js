@@ -1,5 +1,4 @@
 // Grab all DOM elements that will be needed
-// const image = document.getElementById("randomDogImg");
 const quote = document.querySelector(".quote");
 const input = document.querySelector("#breedInput");
 const inputSetDefault = document.querySelector("#inputSetDefault");
@@ -16,7 +15,7 @@ formSetDefault.addEventListener("submit", (e) => {
 });
 
 const clearOldPhotos = () => {
-  if (imageContainer.lastChild !== '#text') {
+  if (imageContainer.lastChild !== "#text") {
     while (imageContainer.lastChild) {
       imageContainer.removeChild(imageContainer.lastChild);
     }
